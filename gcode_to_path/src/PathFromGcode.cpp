@@ -7,6 +7,7 @@
 #include "nav_msgs/msg/path.hpp"
 #include "gcode_to_path/msg/print_pose.hpp"
 #include "gcode_to_path/msg/print_path.hpp"
+#define OFFSET 0.03
 
 struct Point {
     double x;
@@ -52,11 +53,14 @@ private:
                 double x = 0.0, y = 0.0, z = currentZ;
                 std::istringstream iss(line);
                 std::string token;
+                bool hasX, hasY = false;
                 while (iss >> token) {
                     if (token[0] == 'X') {
                         x = std::stod(token.substr(1));
+                        hasX = true;
                     } else if (token[0] == 'Y') {
                         y = std::stod(token.substr(1));
+                        hasY = true;
                     } else if (token[0] == 'Z') {
                         z = std::stod(token.substr(1));
                         currentZ = z;  // Update the current Z coordinate
@@ -64,22 +68,24 @@ private:
                 }
 
                 // Create a PrintPose message and add it to the PrintPath
-                gcode_to_path::msg::PrintPose printPoseMsg;
-                printPoseMsg.pose.pose.position.x = x/1000;
-                printPoseMsg.pose.pose.position.y = y/1000;
-                printPoseMsg.pose.pose.position.z = z/1000;
+                if (hasX && hasY){
+                    gcode_to_path::msg::PrintPose printPoseMsg;
+                    printPoseMsg.pose.pose.position.x = x/1000;
+                    printPoseMsg.pose.pose.position.y = y/1000;
+                    printPoseMsg.pose.pose.position.z = OFFSET + z/1000;
 
                 // Set the print field based on the G-code command
-                printPoseMsg.print = (line.compare(0, 2, "G0") == 0) ? false : true;
+                    printPoseMsg.print = (line.compare(0, 2, "G0") == 0) ? false : true;
 
-                printPathMsg.path.push_back(printPoseMsg);
+                    printPathMsg.path.push_back(printPoseMsg);
 
-                geometry_msgs::msg::PoseStamped poseStampedMsg;
-                poseStampedMsg.pose.position.x = x/1000;
-                poseStampedMsg.pose.position.y = y/1000;
-                poseStampedMsg.pose.position.z = z/1000;
+                    geometry_msgs::msg::PoseStamped poseStampedMsg;
+                    poseStampedMsg.pose.position.x = x/1000;
+                    poseStampedMsg.pose.position.y = y/1000;
+                    poseStampedMsg.pose.position.z = OFFSET + z/1000;
 
-                navPathMsg.poses.push_back(poseStampedMsg);
+                    navPathMsg.poses.push_back(poseStampedMsg);
+                }
             }
         }
 
