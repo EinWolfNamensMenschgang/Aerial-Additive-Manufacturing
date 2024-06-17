@@ -43,7 +43,14 @@ vmap_args = [{
     'publish_tfs': 1,  # Publish marker /tf
     'marker_length': 0.1778,  # Marker length
     'marker_map_load_full_filename': map_filename,  # Load a pre-built map from disk
-    'make_not_use_map': 0  # Don't save a map to disk
+    'make_not_use_map': 1,  # Don't save a map to disk
+    'map_init_style': 2,
+    'map_init_pose_x': 0,
+    'map_init_pose_y': 0,
+    'map_init_pose_z': 0,
+    'map_init_pose_roll': 0,
+    'map_init_pose_pitch': 0,
+    'map_init_pose_yaw': 0
 }]
 
 
