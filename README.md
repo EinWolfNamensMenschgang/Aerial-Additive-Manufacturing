@@ -32,5 +32,11 @@ The nodes can be run with:
 `ros2 run print_controller PrintController`
 `ros2 run print_controller PayloadPositionPublisher`
 
-A launch file for easier startup is still work in progress.
+## Creating the map
+'ros2 run print_controller MapGenerator' creates a map for the fiducial vlam with the marker with ID 0 starting at the top left and the offsets to the other markers specified in the programm. Currently it creates a map for 2x5 markers directly next to each other with the IDs from 0 to 9.
+
+## Controlling the real drone
+Connect to the Tello wifi, which appears after turning it on. Run 'ros2 launch print_controller start.py'.
+
+
 
