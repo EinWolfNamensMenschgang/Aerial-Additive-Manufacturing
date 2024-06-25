@@ -4,16 +4,16 @@
 ## How to install on Ubuntu 22.04:
 Install ROS2 (https://docs.ros.org/en/humble/Installation.html)
 
-Git clone the package into the src folder of your workspace
+Git clone and extract the workspace.
 
-Source your installation and your workspace
+Source your installation and your workspace.
 
 Follow the steps from this https://github.com/TIERS/tello-ros2-gazebo and this https://github.com/ptrmu/fiducial_vlam repo to install the dependencies. When using ROS2 Humble, either clone the files from this repo in your workspace instead or make the necessary changes in the CMakeList.txt files.
 
 Source your ros installation and colcon build.
 
 ## How to install using Docker (recommended)
-Install Docker, Visual Studio Code and the Remote Development Extensions following this tutorial https://docs.ros.org/en/humble/How-To-Guides/Setup-ROS-2-with-VSCode-and-Docker-Container.html. Download the ws folder in this repository. Click View->Command Palette...->Dev Containers: Open Folder in Container... in VSCode and select the ws folder. It will start building your Ubuntu 22.04 environment, ignore error messages as long as the container builds. To install the dependencies follow these steps:
+Install Docker, Visual Studio Code and the Remote Development Extensions following this tutorial https://docs.ros.org/en/humble/How-To-Guides/Setup-ROS-2-with-VSCode-and-Docker-Container.html. Download the ws.zip folder in this repository and extract it. Click View->Command Palette...->Dev Containers: Open Folder in Container... in VSCode and select the ws folder. It will start building your Ubuntu 22.04 environment, ignore error messages as long as the container builds. To install the dependencies follow these steps:
 ```
 source /opt/ros/humble/setup.bash
 cd /home/ws 
