@@ -38,7 +38,7 @@ Make sure the Display variable in your Docker environment is correctly set, see 
 
 ## How to prepare your GCode and run the GCode to ROS nav_msgs/Path converter node:
 Create a CAD file of the desired print geometry and save it as an STL file.
-Slice STL file (Tested with open source https://ultimaker.com/software/ultimaker-cura , used Marlin Flavour), you can create your own printer settings to have a larger print area or change parameters like layer height. Run `ros2 run gcode_to_path PathFromGcode --ros-args -p gcode_path:="<Path to your GCode>"` to publish the path and a boolean message if the drone should be currently extruding or not. 
+Slice the STL file with any slicing software (Tested with open source https://ultimaker.com/software/ultimaker-cura , used Marlin Flavour). You can create your own printer settings to have a larger print area or change parameters like layer height. Run `ros2 run gcode_to_path PathFromGcode --ros-args -p gcode_path:="<Path to your GCode>"` to publish the path and a boolean message if the drone should be currently extruding or not. 
 
 ## Starting the Simulation
 
