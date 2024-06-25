@@ -44,7 +44,7 @@ The nodes can be run with:
 Some topics maybe have to be remapped, depending on your usecase.
 
 ## Creating the map
-'ros2 run print_controller MapGenerator' creates a map for the fiducial vlam with the marker with ID 0 starting at the top left and the offsets to the other markers specified in the programm. Currently it creates a map for 2x5 markers directly next to each other with the IDs from 0 to 9. Alternatively, you can print the A2 marker poster in this repository, which is already stored as a map.  
+'ros2 run print_controller MapGenerator' creates a map for the fiducial vlam with the marker with ID 0 starting at the top left and the offsets to the other markers specified in the programm. Currently it creates a map for 2x5 markers directly next to each other with the IDs from 0 to 9. Alternatively, you can print the A1 marker poster in this repository, which is already stored as a map.  
 
 ## Controlling the real drone
 Connect to the Tello wifi, which appears after turning it on. Run 'ros2 launch print_controller start.py'. This launches the Tello Driver, Fiducial Vlam, and Print Controller. Make sure to change the map and GCode file paths in the launch file according to your environment.  Once the video stream of the tello is displayed run `ros2 service call /drone1/tello_action tello_msgs/TelloAction "{cmd: 'takeoff'}"` to make the Tello take off and follow the path. `ros2 service call /drone1/tello_action tello_msgs/TelloAction "{cmd: 'land'}" makes it land again. 
